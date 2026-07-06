@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arnab Sardar</title>
+<style>
+  :root{
+    --bg-dark: #0b0b1a;
+    --bg-panel: #14142b;
+    --bg-panel-2: #1a1a35;
+    --purple: #7c4dff;
+    --purple-2: #6c3ce0;
+    --blue: #4a7dfc;
+    --green: #3ddc84;
+    --text-main: #ffffff;
+    --text-muted: #b8bcd4;
+    --text-dim: #8a8ea8;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-main);
+    line-height:1.6;
+  }
+
+  a{ text-decoration:none; color:inherit; }
+  ul{ list-style:none; }
+
+  /* ===== NAV ===== */
+  header{
+    background: var(--bg-dark);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    position: sticky;
+    top:0;
+    z-index: 100;
+  }
+  nav{
+    max-width: 1200px;
+    margin: 0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 22px 40px;
+  }
+  .logo{
+    font-size: 1.3rem;
+    font-weight:800;
+    letter-spacing: 1px;
+  }
+  .logo span{ color: var(--green); }
+  .nav-links{
+    display:flex;
+    gap: 34px;
+  }
+  .nav-links a{
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    transition: color .2s;
+  }
+  .nav-links a:hover{ color: var(--text-main); }
+
+  /* ===== HERO ===== */
+  .hero{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 640px;
+    position: relative;
+    overflow:hidden;
+    background: var(--bg-dark);
+  }
+  .hero-left{
+    background: linear-gradient(160deg, #6a3df0 0%, #7c4dff 45%, #8f5cff 100%);
+    position: relative;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding: 60px 70px;
+    overflow:hidden;
+  }
+  .hero-circle{
+    position:absolute;
+    top: -60px;
+    left: -60px;
+    width: 420px;
+    height: 420px;
+    border-radius:50%;
+    background: #4a7dfc;
+    opacity: 0.9;
+  }
+  .hero-left-content{
+    position:relative;
+    z-index:2;
+  }
+  .hero-greeting{
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 6px;
+    font-weight:400;
+  }
+  .hero-name{
+    font-size: 3.6rem;
+    font-weight: 800;
+    line-height: 1.05;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+  .hero-role{
+    font-size: 0.95rem;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    color: #dfe6ff;
+    margin-bottom: 22px;
+    text-transform:uppercase;
+  }
+  .hero-desc{
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.85);
+    max-width: 430px;
+    margin-bottom: 34px;
+  }
+  .hero-buttons{
+    display:flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .btn{
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-weight:600;
+    font-size: 0.95rem;
+    cursor:pointer;
+    transition: transform .2s, opacity .2s;
+    display:inline-block;
+  }
+  .btn:hover{ transform: translateY(-2px); }
+  .btn-primary{
+    background: linear-gradient(90deg, #4a7dfc, #6c8dfc);
+    color: #fff;
+    border: none;
+  }
+  .btn-outline{
+    background: transparent;
+    color: #fff;
+    border: 1.5px solid rgba(255,255,255,0.6);
+  }
+
+  .hero-right{
+    background: linear-gradient(160deg, #8f5cff 0%, #7c4dff 55%, #0b0b1a 100%);
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding: 60px;
+  }
+  .hero-photo{
+    width: 420px;
+    max-width: 90%;
+    aspect-ratio: 3.6/4.3;
+    border-radius: 26px;
+    overflow:hidden;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.45);
+    border: 2px solid rgba(255,255,255,0.08);
+  }
+  .hero-photo img{
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    display:block;
+  }
+
+  @media (max-width: 900px){
+    .hero{ grid-template-columns: 1fr; }
+    .hero-left{ padding: 50px 30px; }
+    .hero-name{ font-size: 2.6rem; }
+    .hero-right{ padding: 30px; }
+  }
+
+  /* ===== SECTION SHARED ===== */
+  section{
+    padding: 100px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .section-header{
+    text-align:center;
+    margin-bottom: 60px;
+  }
+  .section-header h2{
+    font-size: 2.4rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+  .section-header h2 span{ color: var(--green); }
+  .section-header p{
+    color: var(--text-dim);
+    font-size: 1.05rem;
+  }
+
+  /* ===== ABOUT ===== */
+  .about-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  .about-card{
+    background: var(--bg-panel);
+    border-radius: 18px;
+    padding: 40px;
+  }
+  .about-card h3{
+    color: var(--green);
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+  }
+  .about-card p{
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+  .goals-list li{
+    display:flex;
+    gap: 10px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    align-items:flex-start;
+  }
+  .goals-list li::before{
+    content: "▸";
+    color: var(--green);
+    font-weight:700;
+    flex-shrink:0;
+  }
+
+  @media (max-width: 800px){
+    .about-grid{ grid-template-columns: 1fr; }
+  }
+
+  /* ===== SKILLS ===== */
+  .skills-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+  }
+  .skill-card{
+    background: var(--bg-panel);
+    border-radius: 18px;
+    padding: 40px 20px;
+    text-align:center;
+    transition: transform .2s;
+  }
+  .skill-card:hover{ transform: translateY(-4px); }
+  .skill-icon{
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 18px;
+    border-radius: 16px;
+    background: var(--green);
+    color: #0b0b1a;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800;
+    font-size: 1.2rem;
+  }
+  .skill-card p{
+    font-weight:600;
+    font-size: 1.05rem;
+  }
+
+  @media (max-width: 700px){
+    .skills-grid{ grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ===== PROJECTS ===== */
+  .projects-grid{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+  .project-card{
+    background: var(--bg-panel);
+    border-radius: 18px;
+    padding: 24px;
+    transition: transform .2s;
+  }
+  .project-card:hover{ transform: translateY(-4px); }
+  .project-thumb{
+    height: 160px;
+    border-radius: 14px;
+    background: linear-gradient(120deg, #7c4dff, #4a7dfc);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size: 2.6rem;
+    font-weight:800;
+    color:#fff;
+    margin-bottom: 20px;
+  }
+  .project-card h3{
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+  }
+  .project-card p{
+    color: var(--text-muted);
+    margin-bottom: 18px;
+    font-size: 0.95rem;
+  }
+  .tag{
+    display:inline-block;
+    background: rgba(61, 220, 132, 0.12);
+    color: var(--green);
+    font-size: 0.82rem;
+    font-weight:600;
+    padding: 6px 14px;
+    border-radius: 20px;
+  }
+
+  @media (max-width: 800px){
+    .projects-grid{ grid-template-columns: 1fr; }
+  }
+
+  /* ===== EDUCATION ===== */
+  .timeline{
+    position:relative;
+    padding-left: 40px;
+  }
+  .timeline::before{
+    content:"";
+    position:absolute;
+    left: 8px;
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--purple), var(--blue));
+  }
+  .timeline-item{
+    position:relative;
+    background: var(--bg-panel);
+    border-radius: 16px;
+    padding: 30px 34px;
+    margin-bottom: 28px;
+  }
+  .timeline-item::before{
+    content:"";
+    position:absolute;
+    left: -40px;
+    top: 32px;
+    width: 16px;
+    height: 16px;
+    border-radius:50%;
+    background: var(--purple);
+    border: 3px solid var(--bg-dark);
+  }
+  .timeline-item h3{
+    color: var(--green);
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+  }
+  .timeline-item p{
+    color: var(--text-muted);
+    margin-bottom: 4px;
+    font-size: 0.98rem;
+  }
+  .timeline-item p strong{ color: var(--text-main); }
+
+  /* ===== CONTACT ===== */
+  .contact-grid{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 26px;
+  }
+  .contact-card{
+    background: var(--bg-panel);
+    border-radius: 18px;
+    padding: 40px;
+    text-align:center;
+  }
+  .contact-icon{
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 18px;
+    border-radius:50%;
+    background: linear-gradient(135deg, var(--purple), var(--blue));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size: 1.4rem;
+    font-weight:700;
+  }
+  .contact-card h3{
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+  }
+  .contact-card p{
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 700px){
+    .contact-grid{ grid-template-columns: 1fr; }
+  }
+
+  /* ===== FOOTER ===== */
+  footer{
+    background: var(--bg-panel);
+    padding: 28px 40px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap: 16px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  footer p{ color: var(--text-muted); font-size: 0.95rem; }
+  footer a{ color: var(--green); font-weight:600; }
+  .footer-icon{
+    width: 40px;
+    height: 40px;
+    border-radius:50%;
+    background: rgba(255,255,255,0.08);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">ARNAB <span>SARDAR</span></div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section id="home" class="hero" style="padding:0; max-width:none;">
+  <div class="hero-left">
+    <div class="hero-circle"></div>
+    <div class="hero-left-content">
+      <div class="hero-greeting">I'm</div>
+      <h1 class="hero-name">Arnab<br>Sardar</h1>
+      <div class="hero-role">Student · Computing &amp; Information System</div>
+      <p class="hero-desc">Curious coder and problem solver studying at Daffodil International University. Building clean projects with C, Python, Java and the web.</p>
+      <div class="hero-buttons">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-outline">Contact Me</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-photo">
+      <img src="me.jpg" alt="Arnab Sardar">
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-header">
+    <h2>About <span>Me</span></h2>
+    <p>A quick introduction</p>
+  </div>
+  <div class="about-grid">
+    <div class="about-card">
+      <h3>Who I Am</h3>
+      <p>I'm Arnab Sardar, a Computing &amp; Information System student at Daffodil International University. I have a genuine curiosity for how computers work and how code can solve real problems.</p>
+      <p>I'm building strong foundations in C, C++, Python, Java, HTML and CSS — and I enjoy applying what I learn through hands-on projects.</p>
+    </div>
+    <div class="about-card">
+      <h3>My Goals</h3>
+      <p>I'm focused on growing as a developer and thinker — building skills that matter and working on projects that make a difference.</p>
+      <ul class="goals-list">
+        <li>Strengthen core programming &amp; problem-solving skills</li>
+        <li>Build meaningful projects that solve real problems</li>
+        <li>Learn software engineering best practices</li>
+        <li>Grow into a collaborative, impactful developer</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="section-header">
+    <h2>My <span>Skills</span></h2>
+    <p>Languages &amp; technologies I work with</p>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card"><div class="skill-icon">C</div><p>C</p></div>
+    <div class="skill-card"><div class="skill-icon">C++</div><p>C++</p></div>
+    <div class="skill-card"><div class="skill-icon">Py</div><p>Python</p></div>
+    <div class="skill-card"><div class="skill-icon">Jv</div><p>Java</p></div>
+    <div class="skill-card"><div class="skill-icon">&lt;/&gt;</div><p>HTML</p></div>
+    <div class="skill-card"><div class="skill-icon">#</div><p>CSS</p></div>
+    <div class="skill-card"><div class="skill-icon">{ }</div><p>Data Structures</p></div>
+    <div class="skill-card"><div class="skill-icon">★</div><p>Problem Solving</p></div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-header">
+    <h2>Featured <span>Projects</span></h2>
+    <p>Things I've built so far</p>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-thumb">01</div>
+      <h3>Portfolio Website</h3>
+      <p>A personal portfolio site built from scratch using pure HTML &amp; CSS — responsive and clean.</p>
+      <span class="tag">HTML • CSS</span>
+    </div>
+    <div class="project-card">
+      <div class="project-thumb">02</div>
+      <h3>Student Management Project</h3>
+      <p>This project handles student information efficiently using structured data management.</p>
+      <span class="tag">C</span>
+    </div>
+    <div class="project-card">
+      <div class="project-thumb">03</div>
+      <h3>AI Smart Notebook</h3>
+      <p>Saves notes by semester and course name, improves &amp; analyzes text, and generates quizzes.</p>
+      <span class="tag">Python</span>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="section-header">
+    <h2>My <span>Education</span></h2>
+    <p>Academic background</p>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <h3>Daffodil International University</h3>
+      <p>Department of Computing &amp; Information System</p>
+      <p><strong>Degree:</strong> B.Sc. in Computing &amp; Information System</p>
+      <p><strong>Session:</strong> 2025 – 2029</p>
+      <p><strong>Expected Graduation:</strong> 2029</p>
+    </div>
+    <div class="timeline-item">
+      <h3>Khulna Public College</h3>
+      <p>Higher Secondary Certificate (HSC)</p>
+      <p><strong>Level:</strong> Higher Secondary</p>
+      <p><strong>Session:</strong> 2022 – 2023</p>
+    </div>
+    <div class="timeline-item">
+      <h3>Kunduria P. N. High School</h3>
+      <p>Secondary School Certificate (SSC)</p>
+      <p><strong>Level:</strong> Secondary</p>
+      <p><strong>Session:</strong> 2016 – 2021</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-header">
+    <h2>Get in <span>Touch</span></h2>
+    <p>Feel free to reach out anytime</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <div class="contact-icon">@</div>
+      <h3>Email</h3>
+      <p>iamarnabsardar@gmail.com</p>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">◎</div>
+      <h3>University</h3>
+      <p>Daffodil International University</p>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">◉</div>
+      <h3>Location</h3>
+      <p>Dhaka, Bangladesh</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Arnab Sardar. All rights reserved.</p>
+  <p>Designed by <a href="#">Arnab Sardar</a></p>
+  <div class="footer-icon">@</div>
+</footer>
+
+</body>
+</html>
